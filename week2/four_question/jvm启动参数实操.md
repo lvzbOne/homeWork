@@ -228,11 +228,12 @@ real=0.00                // real表示应用程序实际暂停的时间，因为
 
 ```java
 1. 采用串行GC时，Full GC yang区并没有减少，为什么堆减少的量竟然比old区减少的量多呢？？？
-1. 采用并行GC时 Full GC 触发的原因是？？？ GC用的时间和 [Times: user=0.05 sys=0.11, real=0.00 secs] 的这3个时间是否有关联？？？
+ 
+2. yang区清零的原因？
+        young区清零，因为他本来就不大，而且基本上存活对象很少，直接全部提升到老年代，减少复杂度。
     
-2. 采用并行GC时 yang区，old 区是同时并行进行GC还是并发进行？yang区清零的原因？
-    
-3. Metaspace区很难被释放原因？？？默认分配这块策略是什么？？？
+3. Metaspace区很难被释放原因？？？
+        meta需要classloader对象释放了才会释放他加载的class这个条件很苛刻
     
 4. 自适应参数是？？？？？  
     -XX:+UseAdaptiveSizePolicy是一个开关参数
